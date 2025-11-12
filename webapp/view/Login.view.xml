@@ -1,0 +1,30 @@
+<mvc:View
+	controllerName="activity.controller.Login"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    xmlns:form="sap.ui.layout.form"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+<Page id="pageLogin">
+    <tnt:ToolHeader id="tool1">
+        <ToolbarSpacer id="toolsp1"/>
+        <Text id="textlog1" text="Login Page"></Text>
+        <ToolbarSpacer id="toolsp2"/>
+        <Text id="textlog2" text="Hello, there!"></Text>
+    </tnt:ToolHeader>
+    <content>
+        <VBox id="idVbox" >
+            <form:SimpleForm id="simlog1" class="custform">
+                <Label id="labuser" text="Username " />
+                <Input id="inputuser" placeholder="Enter Username"/>
+                <Label id="labuser2" text="Password " />
+                <Input id="inputpass" placeholder="Enter Password" type="Password"/>
+                <Button id="idLoginButton" text="Login" type="Emphasized" press="onLogin"/>
+            </form:SimpleForm>
+        </VBox>
+    </content>
+</Page>
+</mvc:View>

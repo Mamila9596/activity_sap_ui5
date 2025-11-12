@@ -1,0 +1,57 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:upload="sap.ui.unified">
+    
+    <Dialog
+        id="attachmentUploadDialog"
+        title="Carica Allegato"
+        contentWidth="500px">
+        
+        <content>
+            <VBox id="frUp1" class="sapUiSmallMargin">
+                
+                <Label id="frLb1" text="Seleziona File" required="true"/>
+                <upload:FileUploader
+                    id="fileUploader"
+                    name="attachment"
+                    tooltip="Seleziona un file"
+                    change="onFileChange"
+                    width="100%"
+                    placeholder="Nessun file selezionato"
+                    buttonText="Sfoglia"/>
+                
+                <Label id="frLb2" text="Descrizione" required="true" class="sapUiSmallMarginTop"/>
+                <TextArea
+                    id="attachmentDescription"
+                    value=""
+                    rows="4"
+                    width="100%"
+                    placeholder="Inserisci una descrizione per l'allegato..."
+                    maxLength="500"/>
+                
+                <Text id="frInfo1"
+                    text="Max 10MB - Formati supportati: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG"
+                    class="sapUiTinyMarginTop sapUiTinyText sapUiTextMuted"/>
+                
+            </VBox>
+        </content>
+        
+        <beginButton>
+            <Button 
+                id="uploadButton"
+                text="Carica" 
+                type="Emphasized"
+                icon="sap-icon://upload"
+                press="onConfirmUpload"/>
+        </beginButton>
+        
+        <endButton>
+            <Button id="frBtnCancel"
+                text="Annulla" 
+                press="onCancelUpload"/>
+        </endButton>
+        
+    </Dialog>
+    
+</core:FragmentDefinition>

@@ -1,0 +1,18 @@
+/* Enter your custom styles here */
+/* Forza sfondo bianco agli input non editabili */
+.readonlyInput.sapMInputBase {
+  background-color: #ffffff !important;  /* bianco */
+  border: 1px solid #d0d0d0;             /* bordo sottile */
+  border-radius: 4px;                    /* angoli arrotondati */
+  padding: 0.25rem 0.5rem;               /* spaziatura interna */
+}
+
+.customSection {
+  background-color: #ffffff !important;
+}
+
+.custform{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

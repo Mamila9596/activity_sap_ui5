@@ -1,0 +1,119 @@
+{
+    "_version": "1.65.0",
+    "sap.app": {
+        "id": "activity",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.16.1",
+            "toolsId": "6022d4da-e3e2-4b8f-ae7c-93106e2de3b3"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.138.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "activity.i18n.i18n"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "transition": "slide",
+                "type": "View",
+                "viewType": "XML",
+                "path": "activity.view",
+                "async": true,
+                "viewPath": "activity.view"
+            },
+            "routes": [
+                {
+                    "name":"RouteLogin",
+                    "pattern": "",
+                    "target": [
+                        "TargetLogin"
+                    ]
+                },
+                {
+                    "name": "RouteList",
+                    "pattern": "List",
+                    "target": [
+                        "TargetList"
+                    ]
+                },
+                {
+                    "name": "RouteDetail",
+                    "pattern": "Detail/{taskId}",
+                    "target": [
+                        "TargetDetail"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetLogin": {
+                    "id": "Login",
+                    "name": "Login"
+                },
+                "TargetList": {
+                    "id": "List",
+                    "name": "List"
+                },
+                "TargetDetail": {
+                    "id": "Detail",
+                    "name": "Detail"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "activity.view.App",
+            "type": "XML",
+            "id": "App"
+        }
+    }
+}

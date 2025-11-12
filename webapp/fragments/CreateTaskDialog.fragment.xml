@@ -1,0 +1,96 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    
+    <Dialog id="createTaskDialog" 
+            title="{i18n>createTaskTitle}" 
+            class="sapUiContentPadding"
+            contentWidth="500px"
+            resizable="true"
+            draggable="true">
+        
+        <content>
+            <VBox id="VBFrag" class="sapUiMediumMargin">
+                
+                <!-- Form per i dati del task -->
+                <f:SimpleForm id="taskForm"
+                    editable="true"
+                    labelSpanXL="4"
+                    labelSpanM="4"
+                    adjustLabelSpan="false"
+                    emptySpanXL="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    singleContainerFullSize="false">
+                    
+                    <f:content>
+                        <!-- Titolo -->
+                        <Label id="labelfrag" text="{i18n>taskTitle}" required="true"/>
+                        <Input id="titleInput" 
+                               value="{taskDialog>/title}"
+                               placeholder="{i18n>taskTitlePlaceholder}"
+                               valueState="{taskDialog>/titleState}"
+                               valueStateText="{taskDialog>/titleStateText}"
+                               liveChange="onTitleChange"/>
+                        
+                        <!-- Descrizione -->
+                        <Label id="labelfrag2" text="{i18n>taskDescription}"/>
+                        <TextArea id="descriptionInput"
+                                  value="{taskDialog>/description}"
+                                  placeholder="{i18n>taskDescriptionPlaceholder}"
+                                  rows="4"
+                                  growing="true"
+                                  growingMaxLines="8"/>
+                        
+                        <!-- Priorità -->
+                        <Label id="labelfrag3" text="{i18n>taskPriority}" required="true"/>
+                        <Select id="prioritySelect" 
+                                selectedKey="{taskDialog>/priority}"
+                                valueState="{taskDialog>/priorityState}"
+                                valueStateText="{taskDialog>/priorityStateText}">
+                            <core:Item id="itemfr1" key="1" text="{i18n>onep}"/>
+                            <core:Item id="itemfr2" key="2" text="{i18n>twop}"/>
+                            <core:Item id="itemfr3" key="3" text="{i18n>thirdp}"/>
+                            <core:Item id="itemfr4" key="4" text="{i18n>fourp}"/>
+                            <core:Item id="itemfr5" key="5" text="{i18n>fivep}"/>
+                        </Select>
+                        
+                        <!-- Categoria -->
+                        <Label id="labelfrag4" text="{i18n>taskCategory}" required="true"/>
+                        <Select id="categorySelect" 
+                                selectedKey="{taskDialog>/category_id}"
+                                valueState="{taskDialog>/categoryState}"
+                                valueStateText="{taskDialog>/categoryStateText}"
+                                items="{dialogcategories>/categoriesData}"
+                                liveChange="onCategoryChange">
+                            <core:Item id="itemfr6" key="{dialogcategories>id}" text="{dialogcategories>name}"/>
+                        </Select>
+                        
+                        <!-- Data di scadenza (opzionale) -->
+                        <Label id="itemfr7" text="{i18n>taskDueDate}"/>
+                        <DatePicker id="dueDatePicker"
+                                   value="{taskDialog>/due_date}"
+                                   placeholder="{i18n>selectDate}"
+                                   displayFormat="dd/MM/yyyy"/>
+                        
+                    </f:content>
+                </f:SimpleForm>
+                
+            </VBox>
+        </content>
+        
+        <buttons>
+            <Button id="saveButton" 
+                    text="{i18n>save}" 
+                    type="Emphasized" 
+                    press="onSaveTask"
+                    enabled="{taskDialog>/isValid}"/>
+            <Button id="cancelButton" 
+                    text="{i18n>cancel}" 
+                    press="onCancelTask"/>
+        </buttons>
+        
+    </Dialog>
+    
+</core:FragmentDefinition>

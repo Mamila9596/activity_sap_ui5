@@ -1,0 +1,142 @@
+<mvc:View controllerName="activity.controller.List"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+    <content>
+        <IconTabBar id="taskTabs" selectedKey="active">
+            <items>
+                <IconTabFilter id="taskActive" key="active" text="Attive ({activeTasks>/tasks/length})">
+                <VBox id="vbFilters1">
+                    <Toolbar id="toolbF1">
+                        <Title id="titleTool1" text="{i18n>titleTool}" level="H4"/>
+                        <ToolbarSpacer id="toolbSpF1" width="1%" />
+                        <Label id="lbFilter1" text="{i18n>filterPrio}" class="sapUiSmallMarginEnd"/>
+                        <Select id="priorityFilter" change="onFilterChange" class="sapUiSmallMarginEnd">
+                           <items>
+                                <core:Item id="itemf1" key="" text="{i18n>all}"/>
+                                <core:Item id="itemf2" key="1" text="{i18n>onep}"/>
+                                <core:Item id="itemf3" key="2" text="{i18n>twop}"/>
+                                <core:Item id="itemf4" key="3" text="{i18n>thirdp}"/>
+                                <core:Item id="itemf5" key="4" text="{i18n>fourp}"/>
+                                <core:Item id="itemf6" key="5" text="{i18n>fivep}"/>
+                           </items> 
+                        </Select>
+                        <Label id="lbFilter2" text="{i18n>filterCat}" labelFor="categoryFilter" class="sapUiSmallMarginBegin"/>
+                        <Select id="categoryFilter" width="150px" change="onFilterChange" items="{categories>/categoriesData}">
+                            <core:Item id="itemc2" key="{categories>id}" text="{categories>name}" />
+                        </Select> 
+                        <Button id="buttonFilter" icon="sap-icon://filter" press="onFilterPress" class="sapUiSmallMarginBegin"     
+                            text="{i18n>buttonfil}"/>    
+                        <Button id="btnchngstatus" icon="sap-icon://action" press="onChangeStatus" class="sapUiSmallMarginBegin"     
+                                text="{i18n>completeAction}" />   
+                        <Button id="btndelete" icon="sap-icon://delete" press="onDeleteTask" class="sapUiContentPadding" text="{i18n>deleteAction}"/>
+                    </Toolbar>
+                    <Table id="activeTasksTable" items="{activeTasks>/tasks}" noDataText="{i18n>noActiveTasks}"
+                    mode="SingleSelectLeft" itemPress="onTaskPress" class="sapUiResponsiveMargin">
+                       <columns>
+                            <Column id="colActive1">
+                                <Text id="textColA1" text="{i18n>colTitle}"/>  
+                            </Column>
+                            <Column id="colActive2">
+                                <Text id="textColA2" text="{i18n>colDescription}"/>  
+                            </Column>
+                            <Column id="colActive3">
+                                <Text id="textColA3" text="{i18n>colPrio}"/>  
+                            </Column>
+                            <Column id="colActive4">
+                                <Text id="textColA4" text="{i18n>colCat}"/>  
+                            </Column>
+                            <Column id="ColActivec5"  >
+                                <Text id="textColAc5" text="{i18n>colDat}"/>
+                            </Column> 
+                       </columns>
+                       <items>
+                            <ColumnListItem id="colList" type="Navigation" press="onTaskPress">
+                                <cells>
+                                    <Text id="textTitle" text="{activeTasks>title}"/>
+                                    <Text id="textDescription" text="{activeTasks>description}"/>
+                                    <Text id="textPriority" text="{activeTasks>priority}"/>
+                                    <Text id="textCategory" text="{activeTasks>categories/name}"/>
+                                    <DatePicker id="datActive" value="{activeTasks>due_date}" editable="false"/>
+                                </cells>
+                            </ColumnListItem>
+                       </items> 
+                    </Table> 
+                    </VBox>
+                </IconTabFilter>
+                <IconTabFilter id="taskCompleted" key="completed" text="Completate ({completedTasks>/tasks/length})">
+                    <VBox id="vbFilters2">
+                        <Toolbar id="toolbF2">
+                        <Title id="titleTool2" text="{i18n>titleTool}" level="H4"/>
+                        <ToolbarSpacer id="toolbSpF2" width="1%" />
+                        <Label id="lbFilterC2" text="{i18n>filterPrio}" class="sapUiSmallMarginEnd"/>
+                        <Select id="priorityFilterC2" change="onFilterChangeCompleted" class="sapUiSmallMarginEnd">
+                           <items>
+                                <core:Item id="itemfc1" key="" text="{i18n>all}"/>
+                                <core:Item id="itemfc2" key="1" text="{i18n>onep}"/>
+                                <core:Item id="itemfc3" key="2" text="{i18n>twop}"/>
+                                <core:Item id="itemfc4" key="3" text="{i18n>thirdp}"/>
+                                <core:Item id="itemfc5" key="4" text="{i18n>fourp}"/>
+                                <core:Item id="itemfc6" key="5" text="{i18n>fivep}"/>
+                           </items> 
+                        </Select>
+                        <Label id="lbFilterc2" text="{i18n>filterCat}" labelFor="categoryFilter" class="sapUiSmallMarginBegin"/>
+                        <Select id="categoryFilterc" width="150px" change="onFilterChange" items="{categories>/categoriesData}">
+                            <core:Item id="itemcc1" key="" text="{i18n>all}" />
+                            <core:Item id="itemcc2" key="{categories>id}" text="{categories>name}" />
+                        </Select> 
+                        <Button id="buttonFilterc" icon="sap-icon://filter" press="onFilterPressCompleted" class="sapUiSmallMarginBegin"     
+                            text="{i18n>buttonfil}"/>   
+                         <Button id="btnchngstatus2" icon="sap-icon://action" press="onChangeStatus" class="sapUiSmallMarginBegin"     
+                                text="{i18n>activeAction}" />       
+                        <Button id="btndelete2" icon="sap-icon://delete" press="onDeleteTask" class="sapUiContentPadding" text="{i18n>deleteAction}"/>                                      
+                    </Toolbar>
+                    <Table id="completedTasksTable" items="{completedTasks>/tasks}" noDataText="{i18n>noCompletedTasks}"
+                    mode="SingleSelectLeft" itemPress="onTaskPress" class="sapUiResponsiveMargin">
+                       <columns>
+                            <Column id="colComp1">
+                                <Text id="textColC1" text="{i18n>colTitle}"/>  
+                            </Column>
+                            <Column id="colComp2">
+                                <Text id="textColC2" text="{i18n>colDescription}"/>  
+                            </Column>
+                            <Column id="colComp3">
+                                <Text id="textColC3" text="{i18n>colPrio}"/>  
+                            </Column>
+                            <Column id="colComp4">
+                                <Text id="textColC4" text="{i18n>colCat}"/>  
+                            </Column>
+                            <Column id="colCompc5">
+                                <Text id="textColCc5" text="{i18n>colDat}"/>
+                            </Column>
+                       </columns>
+                       <items>
+                            <ColumnListItem id="colList2" type="Navigation" press="onTaskPress">
+                                <cells>
+                                    <Text id="textTitleC" text="{completedTasks>title}"/>
+                                    <Text id="textDescriptionC" text="{completedTasks>description}"/>
+                                    <Text id="textPriorityC" text="{completedTasks>priority}"/>
+                                    <Text id="textCategoryC" text="{completedTasks>categories/name}"/>
+                                    <DatePicker id="datComp" value="{completedTasks>due_date}" editable="false"/>
+                                </cells>
+                            </ColumnListItem>
+                       </items> 
+                    </Table> 
+                    </VBox>
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+    </content>
+    <footer>
+        <Toolbar id="toolbarFooter">
+            <ToolbarSpacer id="spacerToolbar"/>
+            <Button id="addTaskButton" 
+                text="{i18n>addTask}" 
+                icon="sap-icon://add" 
+                type="Emphasized" 
+                press="onAddTaskPress"/>
+        </Toolbar>
+    </footer>
+    </Page>
+</mvc:View>

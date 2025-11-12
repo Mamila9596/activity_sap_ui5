@@ -1,0 +1,131 @@
+<mvc:View xmlns:imageeditor="sap.suite.ui.commons.imageeditor" 
+    xmlns:uxap="sap.uxap"
+    controllerName="activity.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core">
+    <Page id="detail" title="{i18n>title}">
+        <headerContent>
+            <Button id="navbackproduct" text="{i18n>back}" press="onNavBack"></Button>
+        </headerContent>        
+        <uxap:ObjectPageLayout id="productDetailPage">
+            <uxap:headerTitle>
+                <uxap:ObjectPageHeader 
+                    id="header1" 
+                    objectTitle="{localTaskDetail>/task/title}"/>
+            </uxap:headerTitle>
+            <uxap:headerContent>
+            <FlexBox id="flexb1" width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                <Label id="labstat1" text="Stato task"/>
+                <ObjectStatus 
+                    id="status1" 
+                    text="{localTaskDetail>/task/status}" 
+                    state="Information"/>
+                    </FlexBox>
+                <Button id="btnEditTask" text="Edit Task" press="onEditTask"/>
+                <Button id="btnSaveEdit" text="Save changes" press="onSaveEdit"/> 
+            </uxap:headerContent>
+            <uxap:sections>
+                <uxap:ObjectPageSection id="section1" title="{i18n>detailTitle}">
+                    <uxap:subSections>
+                        <uxap:ObjectPageSubSection id="subSection1" class="customSection">
+                            <VBox id="vb1">
+                                <IconTabBar 
+                                    id="icontab1" 
+                                    select="onTabSelect" 
+                                    class="sapUiSmallMarginBottom" 
+                                    expandable="false"
+                                    upperCase="false" 
+                                    headerMode="Inline">
+                                    <items>
+                                        <IconTabFilter id="filt1" text="{i18n>labelTab1}" key="info">
+                                            <VBox id="vb2">
+                                                <Label id="lab1" text="{i18n>labelTaskTitle}"/>
+                                                <Input
+                                                    id="text1" 
+                                                    value="{localTaskDetail>/task/title}" 
+                                                    editable="false"
+                                                    width="30%"
+                                                    class="sapUiSmall"/>
+                                                <Label id="lab2" text="{i18n>labelTaskDescription}"/>
+                                                <Input
+                                                    id="text2" 
+                                                    value="{localTaskDetail>/task/description}" 
+                                                    editable = "false"
+                                                    width="40%"
+                                                    class="sapUiSmall"/>
+                                                <Label id="lab3" text="{i18n>labelTaskPrio}"/>
+                                                <Input
+                                                    id="text3" 
+                                                    value="{localTaskDetail>/task/priority}" 
+                                                    editable = "false"
+                                                    width="5%"
+                                                    class="sapUiSmall"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest="onValueHelp"/>
+                                                <Label id="lab4" text="{i18n>labelDataTask}"/> 
+                                                <DatePicker id="dateP1" 
+                                                value="{localTaskDetail>/task/due_date}"
+                                                placeholder="{i18n>selectDate}"
+                                                editable="false"
+                                                width="10%"
+                                                class="sapUiSmall"
+                                                displayFormat="dd/MM/yyyy"/>     
+                                                <Label id="lab5" text="{i18n>labelTaskCategory}"/>
+                                                <Input
+                                                    id="text5" 
+                                                    value="{localTaskCategory>/category/name}" 
+                                                    editable = "false"
+                                                    width="10%"
+                                                    class="sapUiSmall"
+                                                    showValueHelp="true"
+                                                    valueHelpRequest="onValueHelp"/>                                                                                              
+                                            </VBox>
+                                        </IconTabFilter>
+                                        <IconTabFilter id="filt2" text="{i18n>labelTab2}" key="note" >
+                                            <l:VerticalLayout id="vl1" class="sapUiContentPadding" width="100%" >
+                                                <l:content>
+                                                <TextArea id="ta1"
+                                                value="Inserisci qui le tue note..."
+                                                width="50%"
+                                                rows="20"
+                                                />             
+                                                <Button id="btnTask" text="Salva" press="onSaveNote"/>                             
+                                                </l:content>
+                                            </l:VerticalLayout>
+                                        </IconTabFilter>
+                                        <IconTabFilter id="filt3" text="{i18n>labelTab3}" key="allegati" >
+                                            <l:VerticalLayout id="vl2" class="sapUiContentPadding" width="100%" >
+                                                <l:content>  
+                                                <HBox id="horBox">      
+                                                <Button id="btnAtta" text="Carica allegato" press="onSaveAtt"/> 
+                                                <Button id="btnDele" text="Elimina allegato" class="sapUiSmallMarginBegin" press="onDeleteAtt"/>
+                                                </HBox>  
+                                                <List id="listaall" items="{localTaskAtt>/attachments}" noDataText="Nessun allegato presente" mode="SingleSelectLeft">
+                                                    <StandardListItem id="stlis1"
+                                                    title="{localTaskAtt>file_name}" 
+                                                    description="{localTaskAtt>description}"
+                                                    type="Active"
+                                                    icon="sap-icon://attachment-zip-file"
+                                                    press="onDownloadAttach"
+                                                    >
+                                                    <customData>
+                                                        <core:CustomData key="fileUrl" value="{localTaskAtt>file_url}"/>
+                                                        <core:CustomData key="attId" value="{localTaskAtt>id}"/>
+                                                    </customData>
+                                                    </StandardListItem>
+                                                </List>                            
+                                                </l:content>
+                                            </l:VerticalLayout>
+                                        </IconTabFilter>                                        
+                                    </items>
+                                </IconTabBar>
+                            </VBox>
+                        </uxap:ObjectPageSubSection>
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            </uxap:sections>
+        </uxap:ObjectPageLayout>
+    </Page>
+</mvc:View>
